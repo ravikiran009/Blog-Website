@@ -1,0 +1,32 @@
+{% extends 'home.html' %}
+
+{% block title %} Edit Profile Page {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated%}
+    {% if user.id == userprofile.user.id %}
+        <h2 style="text-align:center;color:white">Edit Profile Page</h2><br>
+        <div class="container" style="width:900px;background-color: white;border-radius:.25rem">
+            <br>
+            <form method="POST" enctype="multipart/form-data" style="width:835px;">
+                {% csrf_token %}
+                {{form.as_p}}
+                </br>
+                <div style="text-align:center;"><button class="btn btn-primary">Update Profile Page</button></div>
+            </form>
+            <br>
+        </div>
+    {% else %}
+        <br><br>
+        <h1 style="color:white;text-align:center">You're not the correct user to edit this profile page!!!</h1><br><br><br>
+    {% endif %}
+    <br><br><br>
+{% else %}
+    <br><br>
+    <h1 style="color:white;text-align:center">You're not allowed to edit profile page!!!</h1><br><br><br>
+    <h3 style="color:white;text-align:center">Login and continue <a style="font-size:50%" href="{% url 'login' %}">here</a></h3>
+    <h3 style="color:white;text-align:center">or</h3>
+    <h3 style="color:white;text-align:center">Sign Up if you are a new user <a style="font-size:50%" href="{% url 'signup' %}">here</a></h3>
+{% endif %}
+{% endblock %}

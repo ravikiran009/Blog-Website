@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+
+{% block title %} Comment on the blog post {% endblock %}
+
+{% block content %}
+
+<h2 style="text-align:center;color:white">Add Comment...</h2><br>
+<div class="container" style="width:900px;background-color: white;border-radius:.25rem">
+    <br>
+    <form method="POST" style="width:835px;">
+        {% csrf_token %}
+        {{form.as_p}}
+        {% if user.is_authenticated %}
+            <script>
+                var name = "{{user.first_name}}"+" "+"{{user.last_name}}";
+                document.getElementById("commentname").value = name;
+            </script>
+        {% else %}
+            <script>
+                document.getElementById("commentname").value = "Unknown";
+            </script>
+        {% endif %}
+        </br>
+        <button class="btn btn-primary">Comment</button>
+    </form>
+    <br>
+</div>
+<br><br><br>
+
+{% endblock %}

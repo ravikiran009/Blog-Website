@@ -1,0 +1,26 @@
+{% extends 'home.html' %}
+
+{% block title %} Update post {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated and user.id == post.author.id %}
+    <h2 style="text-align:center;color:white">Make changes to your post</h2><br>
+
+    <div class="container" style="width:900px;background-color: white;border-radius:.25rem">
+        <br>
+        <form method="POST" style="width:835px;">
+            {% csrf_token %}
+            {{form.media}}
+            {{form.as_p}}
+            </br>
+            <button class="btn btn-primary">Update</button>
+        </form>
+        <br>
+    </div>
+    <br><br><br><br>
+{% else %}
+    <br><br>
+    <h1 style="color:white;text-align:center">You're not allowed to edit this post!!!</h1>
+{% endif %}
+{% endblock %}

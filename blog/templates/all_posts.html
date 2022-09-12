@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH='/static/ckeditor/ckeditor';</script>
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center;color:white">Enjoy blogging...</h2></br>
+<!-- For all posts to display -->
+<ul class="list-group">
+    {% for post in object_list %}
+        <li class="list-group-item"></br>
+            <a href="{% url 'post-detail' post.pk %}" class="btn btn-outline-primary">{{post.title}}</a> 
+            {% if post.author.first_name and post.author.last_name %}
+                - {{post.author.first_name}} 
+                {{post.author.last_name}} -
+            {% else %}
+                -
+            {% endif %}
+            {% if not post.category == "---------" %}
+                <a href="{% url 'category' post.category %}">{{post.category}}</a> -
+            {% endif %}  
+            {{post.date}} 
+            {% if user.is_authenticated %}
+                {% if user.id == post.author.id %}  
+                    - <small><a href="{% url 'edit-post' post.pk %}">Edit</a></small> - 
+                    <small><a href="{% url 'delete-post' post.pk %}">Delete</a></small></br>
+                {% endif %}
+                </br>
+            {% else %}
+                </br>
+            {% endif %}  
+            </br>
+            {% if post.snippet == "web development" or post.snippet == null %}
+                {{post.body|slice:"452" | safe}}
+                {% if post.body|slice:"452:453" %} 
+                    <a style="font-size:13px" href="{% url 'post-detail' post.pk %}">Read more...</a>
+                {% endif %}
+            {% else %}
+                {{post.snippet | safe}}
+            {% endif %}
+            </br></br>
+        </li>
+    {% endfor %}
+</ul>
+</br></br></br></br>
+
+{% endblock %}

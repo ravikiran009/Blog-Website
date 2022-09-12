@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+
+{% block title %} Create a new post {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h2 style="text-align:center;color:white">Add a new Post</h2><br>
+    <div class="container" style="width:900px;background-color: white;border-radius:.25rem">
+        <br>
+        <form method="POST" enctype="multipart/form-data" style="width:835px;">
+            {% csrf_token %}
+            {{form.media}}
+            {{form.as_p}}
+            <button class="btn btn-primary">Post</button>
+        </form></br>
+        <script>
+            var name = "{{user.id}}";
+            document.getElementById("author").value = name;
+        </script>
+        <br>
+    </div>
+    <br><br><br>
+{% else %}
+    <br><br>
+    <h1 style="color:white;text-align:center">You're not allowed to add post!!!</h1><br><br><br>
+    <h3 style="color:white;text-align:center">Login and continue <a style="font-size:50%" href="{% url 'login' %}">here</a></h3>
+    <h3 style="color:white;text-align:center">or</h3>
+    <h3 style="color:white;text-align:center">Sign Up if you are a new user <a style="font-size:50%" href="{% url 'signup' %}">here</a></h3>
+{% endif %}
+{% endblock %}

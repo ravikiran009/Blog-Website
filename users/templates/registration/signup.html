@@ -1,0 +1,67 @@
+{% extends 'home.html' %}
+
+{% block title %} Sign up {% endblock %}
+
+{% block content %}
+<br>
+<h2 style="text-align:center;color:white">Sign Up</h2><br>
+
+<div class="container" style="width:440px;background-color: white;border-radius:.25REM;"><br>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <br>
+            <tr>
+                <th><label for="id_username">Username:</label></th>
+                <td><input type="text" placeholder= "Enter your Username" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username"></td></div>
+            </tr>
+            <tr>
+                <th><br></th>
+            </tr>
+            <tr>
+                <th><label for="id_first_name">First Name:</label></th>
+                <td><input type="text" class="form-control" placeholder= "Enter your First Name" name="first_name" maxlength="150" required id="id_first_name"></td>
+            </tr>
+            <tr>
+                <th><br></th>
+            </tr>
+            <tr>
+                <th><label for="id_last_name">Last Name:</label></th>
+                <td><input type="text" class="form-control" placeholder= "Enter your Last Name" name="last_name" maxlength="150" required id="id_last_name"></td>
+            </tr>
+            <tr>
+                <th><br></th>
+            </tr>
+            <tr>
+                <th><label for="id_email">Email:</label></th>
+                <td><input type="email" class="form-control" placeholder= "Enter your Email" name="email" required id="id_email"></td>
+            </tr> 
+            <tr>
+                <th><br></th>
+            </tr>
+            <tr>
+                <th><label for="id_password1">Password:</label></th>
+                <td><input type="password" placeholder= "Enter your Password" name="password1" autocomplete="new-password" required id="id_password1"></td>
+            </tr>
+            <tr>
+                <th><br></th>
+            </tr>
+            <tr>
+                <th><label for="id_password2">Confirm Password :</label>&emsp;&emsp;</th>
+                <td><input type="password" placeholder= "Re-enter your Password" name="password2" autocomplete="new-password" required id="id_password2"></td>
+            </tr>
+        </table><br>
+        <span class="helptext">
+            <ul>
+                <li>Your password can’t be too similar to your other personal information.</li>
+                <li>Your password must contain at least 8 characters and max 150 characters.</li>
+                <li>Your password can’t be a commonly used password.</li>
+                <li>Your password can’t be entirely numeric.</li>
+            </ul>
+        </span>
+        </br>
+        <div style="text-align:center"><button href="{% url 'login' %}" class="btn btn-primary">Sign Up</button>&emsp;&emsp;&emsp;<a href="{% url 'login' %}" class="btn btn-primary">Login</a></div>
+    </form><br><br>
+</div>
+<br><br><br>
+{% endblock %}

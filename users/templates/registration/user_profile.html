@@ -1,0 +1,62 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %} User Profile {% endblock %}
+
+{% block content %}
+
+<br>
+<h2 style="text-align:center;color:white">User Profile</h2><br>
+
+<div class="container" style="width:1000px;background-color: white;border-radius:.25REM;"><br>
+    <div style="text-align: center;">
+        {% if page_user.profile_pic %}
+            <img width=250px height=250px class="rounded" src="{{ page_user.profile_pic.url }}">
+        {% else %}
+            <img width=250px height=250px class="rounded" src="{% static 'default_profile_pic.jpg' %}">
+        {% endif %}
+        <div><br>
+            <h5>{{page_user.user.first_name}} {{page_user.user.last_name}}</h5>
+            <div>
+                <p class="small text-muted">
+                        {% if page_user.website_url %}
+                            <a href="{{page_user.website_url}}">Website</a> |
+                        {% else %}  
+                            <a href="">Website</a> |
+                        {% endif %}
+                        {% if page_user.facebook_url %}
+                            <a href="{{page_user.facebook_url}}">Facebook</a> |
+                        {% else %}  
+                            <a href="">Facebook</a> |
+                        {% endif %}
+                        {% if page_user.instagram_url %}
+                            <a href="{{page_user.instagram_url}}">Instagram</a> |
+                        {% else %}  
+                            <a href="">Instagram</a> |
+                        {% endif %}
+                        {% if page_user.twitter_url %}
+                            <a href="{{page_user.twitter_url}}">Twitter</a> |
+                        {% else %}  
+                            <a href="">Twitter</a> |
+                        {% endif %}
+                        {% if page_user.pinterest_url %}
+                            <a href="{{page_user.pinterest_url}}">Pinterest</a>
+                        {% else %}  
+                            <a href="">Pinterest</a>
+                        {% endif %} 
+                </p>
+            </div>
+        </div>
+    </div><br>
+    <div style="width:900px;" class="container"><br>
+        <h5>About Author:</h5>
+        {% if page_user.bio %}
+            <p class="card-text">{{page_user.bio}}</p>
+        {% else %}
+            <p class="card-text">Hi, I am {{page_user.user.first_name}} {{page_user.user.last_name}}.</p>
+        {% endif %}
+    </div>
+    <br><br>
+</div>
+<br><br><br><br>
+{% endblock %}
