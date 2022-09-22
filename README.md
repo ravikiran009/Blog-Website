@@ -1,4 +1,4 @@
 # Blog-Website
 Blog Website
 
-[Link] : (crk99.pythonanywhere.com)
+[Link](crk99.pythonanywhere.com)
